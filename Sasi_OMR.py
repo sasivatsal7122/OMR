@@ -117,10 +117,10 @@ def final_image(rotated):
   return sharpened
 
 
-img = cv2.imread("/home/satyasasivatsal/Desktop/Data/OMR project/test3.jpg", cv2.IMREAD_COLOR)
+img = cv2.imread("/home/satyasasivatsal/Desktop/Data/OMR project/test5.jpg", cv2.IMREAD_COLOR)
 
-cleaned_image = final_image(scan(img))
-
+#cleaned_image = final_image(scan(img))
+cleaned_image = scan(img)
 
 gray = cv2.cvtColor(cleaned_image, cv2.COLOR_BGR2GRAY)
 # Binarize the image
