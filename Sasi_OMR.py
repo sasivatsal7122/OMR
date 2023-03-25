@@ -117,12 +117,21 @@ def final_image(rotated):
   return sharpened
 
 
-img = cv2.imread("/home/satyasasivatsal/Desktop/Data/OMR project/test5.jpg", cv2.IMREAD_COLOR)
+img = cv2.imread("/home/satyasasivatsal/Desktop/Data/OMR project/test4.jpg", cv2.IMREAD_COLOR)
 
 #cleaned_image = final_image(scan(img))
 cleaned_image = scan(img)
 
 gray = cv2.cvtColor(cleaned_image, cv2.COLOR_BGR2GRAY)
+thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
+inverted_image = cv2.bitwise_not(thresh)
+
+# Display the result
+cv2.imshow('result', inverted_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+gray = inverted_image.copy()
 # Binarize the image
 thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 21, 5)
 # Display the image with marked bubbles
