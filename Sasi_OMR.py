@@ -117,7 +117,7 @@ def final_image(rotated):
   return sharpened
 
 
-img = cv2.imread("/home/satyasasivatsal/Desktop/Data/OMR project/test4.jpg", cv2.IMREAD_COLOR)
+img = cv2.imread("/home/satyasasivatsal/Desktop/Data/OMR project/test3.jpg", cv2.IMREAD_COLOR)
 
 #cleaned_image = final_image(scan(img))
 cleaned_image = scan(img)
@@ -141,7 +141,7 @@ opened = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel)
 
 # Find contours in the opened image
 contours, hierarchy = cv2.findContours(opened, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
+i=1
 # Loop over the contours
 for contour in contours:
     # Calculate the ratio of the contour area to its bounding box area
@@ -165,8 +165,6 @@ for contour in contours:
         # Mark the bubble with a green rectangle if it's dark, otherwise mark with a red rectangle
         if mean_val < 150:
             cv2.rectangle(cleaned_image, (x, y), (x + w, y + h), (0, 255, 0), 2)
-        else:
-            cv2.rectangle(cleaned_image, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
 # Display the result
 cv2.imshow('result', cleaned_image)
